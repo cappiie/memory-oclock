@@ -70,10 +70,10 @@ const initMemory = () => {
 			
 			divPlateau.appendChild(carte);
 			
-			carte.addEventListener('click',function funcClick() {
-				
+			carte.addEventListener('click',function funcClick() {				
 				clickCarte(this);
 				carte.removeEventListener("click", funcClick); // On supprime l'évènement pour ne pas pouvoir re-cliquer dessus
+				
 			});
 		}
 	
@@ -93,6 +93,7 @@ const initMemory = () => {
 };
 
 const clickCarte = (e) => {
+	
 	if(chrono > 0 && pause == false){
 		e.classList.toggle("show"); // On ajoute une classe qui affiche la carte
 		testPaire(e.getAttribute('num')); // On vérifie si c'est la bonne paire
@@ -107,7 +108,7 @@ const testPaire = (numCarte) => {
 		majScore(); 
 		carteSelectionnee = null; // On vide la mémoire de la première carte sélectionnée
 	}else{
-		// On cache les cartes après 1 sec		
+		// On cache les cartes après 1/2 sec		
 		pause = true;
 		
 		const nextQuiz = setTimeout(function(){
@@ -129,7 +130,7 @@ const testPaire = (numCarte) => {
 			
 			pause = false;
 			
-		},1000);
+		},500);
 		
 	}
 };
@@ -228,3 +229,4 @@ playButton.addEventListener('click',function(){
 });
 
 
+//initMemory();

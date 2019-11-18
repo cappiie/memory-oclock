@@ -62,6 +62,8 @@ var initMemory = function initMemory() {
       carte.appendChild(cacheCarte);
       divPlateau.appendChild(carte);
       carte.addEventListener('click', function funcClick() {
+        //	this.classList.add('show');
+        console.log(this);
         clickCarte(this);
         carte.removeEventListener("click", funcClick); // On supprime l'évènement pour ne pas pouvoir re-cliquer dessus
       });
@@ -84,6 +86,8 @@ var initMemory = function initMemory() {
 };
 
 var clickCarte = function clickCarte(e) {
+  console.log(chrono, pause);
+
   if (chrono > 0 && pause == false) {
     e.classList.toggle("show"); // On ajoute une classe qui affiche la carte
 
@@ -102,7 +106,7 @@ var testPaire = function testPaire(numCarte) {
     majScore();
     carteSelectionnee = null; // On vide la mémoire de la première carte sélectionnée
   } else {
-    // On cache les cartes après 1 sec		
+    // On cache les cartes après 1/2 sec		
     pause = true;
     var nextQuiz = setTimeout(function () {
       var carte1 = document.querySelector(".carte.show[num=\"".concat(carteSelectionnee, "\"]"));
@@ -120,7 +124,7 @@ var testPaire = function testPaire(numCarte) {
       });
       carteSelectionnee = null;
       pause = false;
-    }, 1000);
+    }, 500);
   }
 }; // Mise à jour HTML du score
 
@@ -212,4 +216,4 @@ var showTime = function showTime(time) {
 
 playButton.addEventListener('click', function () {
   initMemory();
-});
+}); //initMemory();
