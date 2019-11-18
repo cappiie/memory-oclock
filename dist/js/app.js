@@ -213,4 +213,3 @@ var showTime = function showTime(time) {
 playButton.addEventListener('click', function () {
   initMemory();
 });
-initMemory();

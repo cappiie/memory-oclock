@@ -1,0 +1,145 @@
+$Nunito: 'Nunito', sans-serif;
+
+
+$vert: #5ed98f;
+$vertfonce: #4eb376;
+$gris: #555555;
+$grisclair: #8b8b8b;
+$bleufonce: #262f3d;
+
+$jaune: #f6cc5a;
+$jauneclair: #f6e4b4;
+$rouge: #f6767c;
+
+
+$largeDevices: "(min-width: 1400px)";
+$tablettes: "(min-width: 992px)";
+$mobiles: "(min-width: 768px)";
+$smallDevices: "(min-width: 576px)";
+
+@mixin transition($duree){
+	-webkit-transition: all $duree ease-in;
+    -moz-transition: all $duree ease-in;
+    -o-transition: all $duree ease-in;
+    transition: all $duree ease-in;
+}
+
+@mixin transitionScale($ratio){
+	-webkit-transform:scale($ratio); /* Safari and Chrome */
+    -moz-transform:scale($ratio); /* Firefox */
+    -ms-transform:scale($ratio); /* IE 9 */
+    -o-transform:scale($ratio); /* Opera */
+    transform:scale($ratio);
+}
+
+@mixin boxShadow($angle,$distance,$taille,$grossi,$rgba,$position:false){
+	@if $position != false{
+		-webkit-box-shadow: $position $angle $distance $taille $grossi $rgba;
+		-moz-box-shadow: $position $angle $distance $taille $grossi $rgba;
+		box-shadow:$position $angle $distance $taille $grossi $rgba;
+	}
+	-webkit-box-shadow: $angle $distance $taille $grossi $rgba;
+	-moz-box-shadow: $angle $distance $taille $grossi $rgba;
+	box-shadow: $angle $distance $taille $grossi $rgba;
+}
+
+
+@mixin LienHover()
+{
+	&:hover{
+		text-decoration: underline;
+	}
+}
+
+@mixin luminosite($pourcentage,$duree){
+	@include transition($duree);
+	&:hover{
+		filter: brightness($pourcentage);
+        -webkit-filter: brightness($pourcentage);
+        -moz-filter: brightness($pourcentage);
+        -o-filter: brightness($pourcentage);
+        -ms-filter: brightness($pourcentage);
+	}
+}
+
+@mixin fontMix($font:false,$size:false,$color:false,$weight: false, $transform:none,$lh:false){
+	@if $font {font-family: $font;}
+	@if $size {font-size: $size;}
+	@if $color {color: $color;}
+	@if $weight {font-weight: $weight;}
+	@if $transform {text-transform: $transform;}
+	@if $lh {line-height: $lh;}	
+}
+
+@mixin translateXY($x,$y,$sens){
+	@if $sens == 'x' {
+		-ms-transform: translateX($x);
+		-webkit-transform: translateX($x);
+		-moz-transform: translateX($x);
+		-o-transform: translateX($x);
+		transform: translateX($x);
+	}@else if $sens == 'y'{
+		-ms-transform: translateY($y);
+		-webkit-transform: translateY($y);
+		-moz-transform: translateY($y);
+		-o-transform: translateY($y);
+		transform: translateY($y);
+	}@else{
+		-ms-transform: translate($x,$y);
+		-webkit-transform: translate($x,$y);
+		-moz-transform: translate($x,$y);
+		-o-transform: translate($x,$y);
+		transform: translate($x,$y);
+	}
+}
+
+/*
+	Exemple Placeholader
+	
+	textarea {  
+		@include inputPlaceholder {
+			color: $grey;
+		}
+	}
+*/
+@mixin inputPlaceholder {
+    &::placeholder { @content; }
+    &:-moz-placeholder { @content; }
+    &::-moz-placeholder { @content; }
+    &:-ms-input-placeholder { @content; }
+    &::-webkit-input-placeholder { @content; }
+}
+
+$nbCols: 12;
+$size: 100;
+$breakpoints: ("(min-width: 1400px)","(min-width: 100px)"); // Leave this variable alone
+
+$breakpoints: (
+	"desktop": (
+		css: "xl",
+		media: "(min-width: 1400px)"
+	),
+	"tablette": (
+		css: "lg",
+		media: "(min-width: 1000px)"
+	)
+);
+
+@each $bkp-key, $bkp-details in $breakpoints {
+	$css: map-get($bkp-details, 'css');
+	$media: map-get($bkp-details, 'media');
+	 
+	@media #{$media} {
+	
+		@for $col from 1 through $nbCols {	
+			
+			.col-#{$css}-#{$col} {
+				position: relative;
+				-ms-flex: 0 0 percentage(100 / $nbCols * $col / 100);
+				flex: 0 0 percentage(100 / $nbCols * $col / 100);
+				max-width: percentage(100 / $nbCols * $col / 100);
+			}
+			
+		}
+	}
+}

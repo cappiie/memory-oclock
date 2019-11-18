@@ -1,0 +1,115 @@
+.texte{
+	font-family: $Nunito;
+	font-weight: 400;
+	letter-spacing: .06rem;
+}
+
+.texte-spacing-medium{
+	letter-spacing: .03em;
+}
+
+.texte-semibold{
+	font-weight: 600;
+}
+
+.texte-bold{
+	font-weight: 700;
+}
+
+.texte-extrabold{
+	font-weight: 900;
+}
+
+.texte-gris{
+	color: $gris;
+}
+
+.texte-grisclair{
+	color: $grisclair;
+}
+
+.texte-jaune{
+	color: $jaune;
+}
+
+.texte-rouge{
+	color: $rouge;
+}
+
+.texte-jauneclair{
+	color: $jauneclair;
+}
+
+.texte-vert{
+	color: $vert;
+}
+
+
+.texte-12{
+	font-size: 12px;
+}
+
+.texte-15{
+	font-size: 15px;
+}
+
+.texte-18{
+	font-size: 18px;
+}
+
+.texte-32{
+	font-size: 32px;
+}
+
+
+.text-center{
+	text-align: center;
+}
+
+.text-right{
+	text-align: right;
+}
+
+.button{
+	@include fontMix($Nunito,13px,#fff,700, none,false);
+	@include transition(0.15s);
+	background: $vert;
+	border-radius: 5px;
+	padding: 10px 35px;
+	display: inline-block;
+	box-shadow: 0px 3px 5px 1px rgba(0,0,0,0.07);
+	
+	&:hover{
+		background: $vertfonce;
+		color: #fff;
+	}
+}
+
+.button-light{
+	background: transparent;
+	color: $vert;
+	border: 1px solid $vert;
+	box-shadow: unset;
+	&:hover{
+		background: transparent;
+		color: $vertfonce;
+		border-color: $vertfonce;
+	}
+}
+
+
+.m-t-30{
+	margin-top: 30px;
+}
+
+.m-t-65{
+	margin-top: 65px;
+}
+
+.m-t-75{
+	margin-top: 75px;
+}
+
+.m-t-105{
+	margin-top: 105px;
+}
